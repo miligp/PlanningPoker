@@ -1,0 +1,25 @@
+{
+  "gameMode": "average", 
+  "players": ["Alice", "Bob", "Charlie"],
+  "features": [
+    {
+      "id": 1,
+      "name": "Page d'accueil",
+      "description": "Conception de la page d'accueil de l'application",
+      "status": "in_progress",
+      "estimatedDifficulty": null
+    },
+    {
+      "id": 2,
+      "name": "Authentification utilisateur",
+      "description": "Mise en place de l'authentification",
+      "status": "validated",
+      "estimatedDifficulty": 5
+    }
+  ],
+  "votes": {
+    "Alice": [null, null], 
+    "Bob": [null, 5], 
+    "Charlie": [null, 5]
+  }
+}
