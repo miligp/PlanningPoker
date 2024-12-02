@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planification Poker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Planification Poker</h1>
+    </header>
+
+    <main>
+        <div id="menu">
+            <label for="nbJoueurs">Nb joueurs :</label>
+            <input type="number" id="nbJoueurs" min="2" placeholder="Ex : 3">
+            <button id="validerJoueurs">Valider</button>
+        
+            <div id="zoneNomsJoueurs" style="display:none;"></div>
+            
+            <div id="choixMode" style="margin-top: 10px;">
+                <label for="modeJeu">Mode de jeu :</label>
+                <select id="modeJeu">
+                    <option value="strict">Unanimité</option>
+                    <option value="moyenne">Moyenne</option>
+                </select>
+            </div>
+            
+            <button id="demarrerJeu" style="display:none;">Démarrer</button>
+        </div>
+        
+        <div id="jeu" style="display:none;">
+            <h2>Votez :</h2>
+            <div id="cartes">
+                <img src="assets/cartes_0.svg" alt="Carte 0" class="carte">
+                <img src="assets/cartes_1.svg" alt="Carte 1" class="carte">
+                <img src="assets/cartes_2.svg" alt="Carte 2" class="carte">
+                <img src="assets/cartes_3.svg" alt="Carte 3" class="carte">
+                <img src="assets/cartes_5.svg" alt="Carte 5" class="carte">
+                <img src="assets/cartes_8.svg" alt="Carte 8" class="carte">
+                <img src="assets/cartes_13.svg" alt="Carte 13" class="carte">
+                <img src="assets/cartes_20.svg" alt="Carte 20" class="carte">
+                <img src="assets/cartes_40.svg" alt="Carte 40" class="carte">
+                <img src="assets/cartes_100.svg" alt="Carte 100" class="carte">
+                <img src="assets/cartes_cafe.svg" alt="Carte Café" class="carte">
+            </div>
+            <button id="validerVote" disabled>Valider</button>
+            <div id="resultatVote"></div>
+            <button id="recommencerTour" style="display:none;">Recommencer</button>
+            <button id="nouvellePartie" style="display:none;">Nouvelle Partie</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>Planification Poker</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

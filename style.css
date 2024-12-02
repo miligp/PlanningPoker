@@ -1,0 +1,136 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+/* Header */
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    width: 100%;
+    font-size: 24px;
+    font-weight: bold;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+/* Menu */
+#menu {
+    display: block;
+    margin-bottom: 20px;
+}
+
+#zoneNomsJoueurs {
+    margin: 10px;
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#demarrerJeu {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+#demarrerJeu:hover {
+    background-color: #45a049;
+}
+
+/* Section de jeu */
+#jeu {
+    display: none;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Style des cartes */
+.carte {
+    width: 60px;
+    height: 90px;
+    margin: 8px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    display: inline-block;
+    text-align: center;
+    line-height: 90px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.carte:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.carte.selectionnee {
+    border: 3px solid #4CAF50;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#resultatVote {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#recommencerTour {
+    display: none;
+}
+
+#nouvellePartie {
+    display: none;
+    margin-top: 20px;
+    background-color: #FF5733;
+}
+
+#nouvellePartie:hover {
+    background-color: #e04d2a;
+}
