@@ -1,4 +1,16 @@
+/**
+ * @file jeu.js
+ * @brief Gestionnaire du jeu basé sur les votes.
+ * @details Ce script configure et gère les différentes étapes d'un jeu interactif
+ *          où les joueurs votent et les résultats sont calculés selon le mode choisi.
+ *          Il inclut la gestion des joueurs, des votes, et des conditions de fin de partie.
+ */
+
+/**
+ * @brief Initialisation du jeu après chargement du DOM.
+ */
 document.addEventListener("DOMContentLoaded", () => {
+    // Éléments HTML
     const btnDemarrer = document.getElementById('demarrerJeu');
     const sectionJeu = document.getElementById('jeu');
     const sectionMenu = document.getElementById('menu');
@@ -11,17 +23,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnRecommencer = document.getElementById('recommencerTour');
     const btnNouvellePartie = document.getElementById('nouvellePartie');
 
-    let joueurs = [];
-    let votesJoueurs = {};
-    let joueurActuelIndex = 0;
-    let modeJeu = 'moyenne';
-    let tour = 1;
+    // Variables globales
+    let joueurs = []; /**< @brief Liste des pseudos des joueurs. */
+    let votesJoueurs = {}; /**< @brief Votes des joueurs (clé : pseudo, valeur : vote). */
+    let joueurActuelIndex = 0; /**< @brief Index du joueur en cours de jeu. */
+    let modeJeu = 'moyenne'; /**< @brief Mode de jeu sélectionné (moyenne ou unanimité). */
+    let tour = 1; /**< @brief Compteur du nombre de tours (utile pour le mode moyenne). */
 
-    // Validation du nombre de joueurs
+    /**
+     * @brief Gère la validation du nombre de joueurs et affiche les champs de saisie.
+     */
     btnValiderJoueurs.addEventListener('click', () => {
         const nbJoueurs = parseInt(inputNbJoueurs.value);
         if (nbJoueurs >= 2) {
-            zoneNomsJoueurs.innerHTML = ''; // Réinitialisation des champs noms
+            zoneNomsJoueurs.innerHTML = '';
             for (let i = 0; i < nbJoueurs; i++) {
                 const input = document.createElement('input');
                 input.type = 'text';
@@ -36,7 +51,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Démarrer le jeu
+    /**
+     * @brief Démarre le jeu avec les noms des joueurs et le mode de jeu sélectionné.
+     */
     btnDemarrer.addEventListener('click', () => {
         const inputsNoms = document.querySelectorAll('.inputPseudo');
         joueurs = Array.from(inputsNoms).map(input => input.value.trim()).filter(nom => nom);
@@ -57,7 +74,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Sélection des cartes
+    /**
+     * @brief Gère la sélection d'une carte par un joueur.
+     */
     cartes.forEach(carte => {
         carte.addEventListener('click', () => {
             cartes.forEach(c => c.classList.remove('selectionnee'));
@@ -67,7 +86,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Validation des votes
+    /**
+     * @brief Valide le vote d'un joueur et passe au joueur suivant ou au traitement des votes.
+     */
     btnValiderVote.addEventListener('click', () => {
         if (votesJoueurs[joueurs[joueurActuelIndex]] !== undefined) {
             joueurActuelIndex++;
@@ -85,7 +106,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Gestion du mode Unanimité
+    /**
+     * @brief Gère le mode unanimité.
+     */
     function gererUnanimite() {
         const votes = Object.values(votesJoueurs);
         const minVote = Math.min(...votes);
@@ -96,15 +119,17 @@ document.addEventListener("DOMContentLoaded", () => {
             const joueurMax = obtenirJoueurParVote(maxVote);
 
             resultatVote.innerHTML = `<p>${joueurMin} (min) et ${joueurMax} (max), discutez et revotez !</p>`;
-            joueurActuelIndex = 0; // Repartir au premier joueur
-            votesJoueurs = {}; // Réinitialiser les votes
+            joueurActuelIndex = 0;
+            votesJoueurs = {};
         } else {
             resultatVote.innerHTML = `<p>Tous les joueurs sont d'accord : ${minVote}.</p>`;
             afficherFinDePartie();
         }
     }
 
-    // Gestion du mode Moyenne
+    /**
+     * @brief Gère le mode moyenne.
+     */
     function gererMoyenne() {
         if (tour === 1) {
             const votes = Object.values(votesJoueurs);
@@ -115,9 +140,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const joueurMax = obtenirJoueurParVote(maxVote);
 
             resultatVote.innerHTML = `<p>${joueurMin} (min) et ${joueurMax} (max), discutez avant le 2e tour.</p>`;
-            tour = 2; // Passer au deuxième tour
+            tour = 2;
             joueurActuelIndex = 0;
-            votesJoueurs = {}; // Réinitialiser les votes
+            votesJoueurs = {};
         } else if (tour === 2) {
             const votes = Object.values(votesJoueurs);
             const moyenne = (votes.reduce((somme, vote) => somme + vote, 0) / votes.length).toFixed(2);
@@ -127,19 +152,27 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Obtenir le nom du joueur par son vote
+    /**
+     * @brief Obtient le nom du joueur par son vote.
+     * @param vote Vote du joueur.
+     * @return Le pseudo du joueur ayant effectué ce vote.
+     */
     function obtenirJoueurParVote(vote) {
         return Object.keys(votesJoueurs).find(joueur => votesJoueurs[joueur] === vote);
     }
 
-    // Afficher les boutons de fin de partie
+    /**
+     * @brief Affiche les boutons de fin de partie.
+     */
     function afficherFinDePartie() {
         btnValiderVote.disabled = true;
         btnRecommencer.style.display = 'block';
         btnNouvellePartie.style.display = 'block';
     }
 
-    // Recommencer le tour
+    /**
+     * @brief Redémarre le tour actuel.
+     */
     btnRecommencer.addEventListener('click', () => {
         joueurActuelIndex = 0;
         votesJoueurs = {};
@@ -149,7 +182,9 @@ document.addEventListener("DOMContentLoaded", () => {
         btnValiderVote.disabled = false;
     });
 
-    // Nouvelle partie
+    /**
+     * @brief Réinitialise le jeu pour une nouvelle partie.
+     */
     btnNouvellePartie.addEventListener('click', () => {
         sectionMenu.style.display = 'block';
         sectionJeu.style.display = 'none';
