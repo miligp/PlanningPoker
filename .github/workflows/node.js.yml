@@ -1,4 +1,5 @@
 name: Tests unitaire Javascript
+
 on:
   push:
     branches:
@@ -17,8 +18,14 @@ jobs:
 
     - name: Set up node
       uses: actions/setup-node@v4
+      with:
+        node-version: 16
 
     - name: Install dependencies
       run: npm install
+
+    - name: Fix Jest permissions
+      run: chmod +x ./node_modules/.bin/jest
+
     - name: Run tests
       run: npm run test
