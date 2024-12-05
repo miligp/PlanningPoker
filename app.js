@@ -113,19 +113,24 @@ document.addEventListener("DOMContentLoaded", () => {
         const votes = Object.values(votesJoueurs);
         const minVote = Math.min(...votes);
         const maxVote = Math.max(...votes);
-
+    
         if (minVote !== maxVote) {
-            const joueurMin = obtenirJoueurParVote(minVote);
-            const joueurMax = obtenirJoueurParVote(maxVote);
-
-            resultatVote.innerHTML = `<p>${joueurMin} (min) et ${joueurMax} (max), discutez et revotez !</p>`;
-            joueurActuelIndex = 0;
-            votesJoueurs = {};
+            const joueurMin = obtenirJoueurParVote(votesJoueurs, minVote);
+            const joueurMax = obtenirJoueurParVote(votesJoueurs, maxVote);
+    
+            resultatVote.innerHTML = `<p>${joueurMin} (min) et ${joueurMax} (max), discutez !</p>`;
+            
+            // Démarre un minuteur de 30 secondes
+            demarrerMinuteur(30, () => {
+                joueurActuelIndex = 0; // Réinitialise pour le prochain vote
+                votesJoueurs = {}; // Réinitialise les votes
+            });
         } else {
             resultatVote.innerHTML = `<p>Tous les joueurs sont d'accord : ${minVote}.</p>`;
             afficherFinDePartie();
         }
     }
+    
 
     /**
      * @brief Gère le mode moyenne.
@@ -135,22 +140,27 @@ document.addEventListener("DOMContentLoaded", () => {
             const votes = Object.values(votesJoueurs);
             const minVote = Math.min(...votes);
             const maxVote = Math.max(...votes);
-
-            const joueurMin = obtenirJoueurParVote(minVote);
-            const joueurMax = obtenirJoueurParVote(maxVote);
-
+    
+            const joueurMin = obtenirJoueurParVote(votesJoueurs, minVote);
+            const joueurMax = obtenirJoueurParVote(votesJoueurs, maxVote);
+    
             resultatVote.innerHTML = `<p>${joueurMin} (min) et ${joueurMax} (max), discutez avant le 2e tour.</p>`;
-            tour = 2;
-            joueurActuelIndex = 0;
-            votesJoueurs = {};
+            
+            // Démarre un minuteur de 30 secondes
+            demarrerMinuteur(30, () => {
+                tour = 2; // Passe au 2e tour
+                joueurActuelIndex = 0;
+                votesJoueurs = {};
+            });
         } else if (tour === 2) {
             const votes = Object.values(votesJoueurs);
             const moyenne = (votes.reduce((somme, vote) => somme + vote, 0) / votes.length).toFixed(2);
-
+    
             resultatVote.innerHTML = `<p>La moyenne des votes est : ${moyenne}.</p>`;
             afficherFinDePartie();
         }
     }
+    
 
     /**
      * @brief Obtient le nom du joueur par son vote.
@@ -169,6 +179,38 @@ document.addEventListener("DOMContentLoaded", () => {
         btnRecommencer.style.display = 'block';
         btnNouvellePartie.style.display = 'block';
     }
+/**
+ * @brief Gère un minuteur pendant lequel les joueurs discutent.
+ * @param {number} duree - La durée du minuteur en secondes.
+ * @param {Function} callback - Fonction à exécuter une fois le minuteur écoulé.
+ */
+function demarrerMinuteur(duree, callback) {
+    const resultatVote = document.getElementById('resultatVote');
+    const btnValiderVote = document.getElementById('validerVote');
+    let tempsRestant = duree;
+
+    // Bloque le bouton de vote
+    btnValiderVote.disabled = true;
+
+    // Met à jour le texte pour afficher le temps restant
+    const interval = setInterval(() => {
+        resultatVote.innerHTML = `Discussion en cours... ${tempsRestant} secondes restantes.`;
+        tempsRestant--;
+
+        if (tempsRestant < 0) {
+            clearInterval(interval);
+            resultatVote.innerHTML = `Temps écoulé ! Vous pouvez voter.`;
+            
+            // Réactive le bouton de vote
+            btnValiderVote.disabled = false;
+
+            // Exécute le callback si défini
+            if (typeof callback === 'function') {
+                callback();
+            }
+        }
+    }, 1000); // Exécute toutes les secondes
+}
 
     /**
      * @brief Redémarre le tour actuel.
