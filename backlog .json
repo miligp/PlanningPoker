@@ -1,7 +1,6 @@
 [
     { "id": 1, "feature": "Tache 1 : Configurer le serveur" },
     { "id": 2, "feature": "Tache 2 : Intégrer l'authentification" },
-    { "id": 3, "feature": "Tache 3 : Déploiement sur le cloud" }, 
-    { "id": 4, "feature": "Tache 4 : Tester le code"}
+    { "id": 3, "feature": "Tache 3 : Déploiement sur le cloud" }
 
 ]
