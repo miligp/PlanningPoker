@@ -1,25 +1,7 @@
-{
-  "gameMode": "average", 
-  "players": ["Alice", "Bob", "Charlie"],
-  "features": [
-    {
-      "id": 1,
-      "name": "Page d'accueil",
-      "description": "Conception de la page d'accueil de l'application",
-      "status": "in_progress",
-      "estimatedDifficulty": null
-    },
-    {
-      "id": 2,
-      "name": "Authentification utilisateur",
-      "description": "Mise en place de l'authentification",
-      "status": "validated",
-      "estimatedDifficulty": 5
-    }
-  ],
-  "votes": {
-    "Alice": [null, null], 
-    "Bob": [null, 5], 
-    "Charlie": [null, 5]
-  }
-}
+[
+    { "id": 1, "feature": "Tache 1 : Configurer le serveur" },
+    { "id": 2, "feature": "Tache 2 : Intégrer l'authentification" },
+    { "id": 3, "feature": "Tache 3 : Déploiement sur le cloud" }, 
+    { "id": 4, "feature": "Tache 4 : Tester le code"}
+
+]
