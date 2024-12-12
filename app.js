@@ -6,9 +6,6 @@
  *          Il inclut la gestion des joueurs, des votes, et des conditions de fin de partie.
  */
 
-/**
- * @brief Initialisation du jeu après chargement du DOM.
- */
 document.addEventListener("DOMContentLoaded", () => {
     // Éléments HTML
     const btnDemarrer = document.getElementById('demarrerJeu');
@@ -20,22 +17,43 @@ document.addEventListener("DOMContentLoaded", () => {
     const cartes = document.querySelectorAll('.carte');
     const btnValiderVote = document.getElementById('validerVote');
     const resultatVote = document.getElementById('resultatVote');
-    const btnRecommencer = document.getElementById('recommencerTour');
+    const btnSuivant = document.getElementById('recommencerTour');
     const btnNouvellePartie = document.getElementById('nouvellePartie');
+    const btnChargerBacklog = document.getElementById('chargerBacklog');
+    const backlogFileInput = document.getElementById("backlogFile");
+    const missionActuelle = document.getElementById("missionActuelle");
+    
 
     // Variables globales
-    let joueurs = []; /**< @brief Liste des pseudos des joueurs. */
-    let votesJoueurs = {}; /**< @brief Votes des joueurs (clé : pseudo, valeur : vote). */
-    let joueurActuelIndex = 0; /**< @brief Index du joueur en cours de jeu. */
-    let modeJeu = 'moyenne'; /**< @brief Mode de jeu sélectionné (moyenne ou unanimité). */
-    let tour = 1; /**< @brief Compteur du nombre de tours (utile pour le mode moyenne). */
+    let joueurs = [];
+    let votesJoueurs = {};
+    let joueurActuelIndex = 0;
+    let modeJeu = 'moyenne';
+    let tour = 1;
 
-    /**
-     * @brief Gère la validation du nombre de joueurs et affiche les champs de saisie.
-     */
+    let backlog = [];
+    let backlogIndex = 0;
+
+  // Fonction pour afficher la mission actuelle
+  function afficherMissionActuelle() {
+
+    if (backlogIndex < backlog.length) {
+        const mission = backlog[backlogIndex];
+        missionActuelle.innerHTML = `
+            <p><strong>Tache :</strong> ${mission.feature}</p>
+        `;
+        btnValiderVote.disabled = false;
+    } else {
+        missionActuelle.innerHTML = "<p>Toutes les missions sont terminées.</p>";
+        afficherFinDePartie();
+    }
+}
+
+    // Gère la validation du nombre de joueurs
     btnValiderJoueurs.addEventListener('click', () => {
         const nbJoueurs = parseInt(inputNbJoueurs.value);
-        if (nbJoueurs >= 2) {
+
+        if (!isNaN(nbJoueurs) && nbJoueurs >= 2) {  //Changement v2
             zoneNomsJoueurs.innerHTML = '';
             for (let i = 0; i < nbJoueurs; i++) {
                 const input = document.createElement('input');
@@ -51,16 +69,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    /**
-     * @brief Démarre le jeu avec les noms des joueurs et le mode de jeu sélectionné.
-     */
+    // Gestion du bouton "Démarrer"
     btnDemarrer.addEventListener('click', () => {
         const inputsNoms = document.querySelectorAll('.inputPseudo');
         joueurs = Array.from(inputsNoms).map(input => input.value.trim()).filter(nom => nom);
 
         modeJeu = document.getElementById('modeJeu').value;
 
-        if (joueurs.length >= 2) {
+        if (joueurs.length >= 2 && backlog.length > 0) { //Cnagement
             joueurActuelIndex = 0;
             votesJoueurs = {};
             tour = 1;
@@ -69,14 +85,39 @@ document.addEventListener("DOMContentLoaded", () => {
             sectionJeu.style.display = 'block';
             resultatVote.innerHTML = `${joueurs[joueurActuelIndex]}, c'est à vous de voter.`;
             btnValiderVote.disabled = false;
+            afficherMissionActuelle();
         } else {
-            alert("Veuillez entrer tous les pseudos !");
+            alert("Veuillez entrer tous les pseudos et charger un backlog !");
         }
     });
 
-    /**
-     * @brief Gère la sélection d'une carte par un joueur.
-     */
+    // Gestion du bouton "Charger Backlog"
+    btnChargerBacklog.addEventListener("click", () => {
+        const backlogFile = backlogFileInput.files[0];
+        if (!backlogFile) {
+            alert("Veuillez sélectionner un fichier JSON.");
+            console.error("Aucun fichier sélectionné.");
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = ({ target }) => {
+            try {
+                const data = JSON.parse(target.result);
+                if (!Array.isArray(data) || data.length === 0) {
+                    throw new Error("Le fichier JSON est vide ou mal formaté.");
+                }
+                backlog = data;
+                alert("Backlog chargé avec succès !");
+            } catch (error) {
+                console.error("Erreur lors du chargement du fichier JSON :", error);
+                alert(error.message);
+            }
+        };
+        reader.readAsText(backlogFile);
+    });
+
+
+    // Gestion des cartes pour voter
     cartes.forEach(carte => {
         carte.addEventListener('click', () => {
             cartes.forEach(c => c.classList.remove('selectionnee'));
@@ -86,9 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    /**
-     * @brief Valide le vote d'un joueur et passe au joueur suivant ou au traitement des votes.
-     */
+    // Gestion du bouton "Valider vote"
     btnValiderVote.addEventListener('click', () => {
         if (votesJoueurs[joueurs[joueurActuelIndex]] !== undefined) {
             joueurActuelIndex++;
@@ -106,14 +145,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    /**
-     * @brief Gère le mode unanimité.
-     */
+    // Gestion du mode "Unanimité"
     function gererUnanimite() {
         const votes = Object.values(votesJoueurs);
         const minVote = Math.min(...votes);
         const maxVote = Math.max(...votes);
-    
+
         if (minVote !== maxVote) {
             const joueurMin = obtenirJoueurParVote(votesJoueurs, minVote);
             const joueurMax = obtenirJoueurParVote(votesJoueurs, maxVote);
@@ -130,12 +167,9 @@ document.addEventListener("DOMContentLoaded", () => {
             afficherFinDePartie();
         }
     }
-    
 
-    /**
-     * @brief Gère le mode moyenne.
-     */
-    function gererMoyenne() {
+    // Gestion du mode "Moyenne"
+   function gererMoyenne() {
         if (tour === 1) {
             const votes = Object.values(votesJoueurs);
             const minVote = Math.min(...votes);
@@ -160,9 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
             afficherFinDePartie();
         }
     }
-    
-
-    /**
+      /**
      * @brief Obtient le nom du joueur par son vote.
      * @param vote Vote du joueur.
      * @return Le pseudo du joueur ayant effectué ce vote.
@@ -171,29 +203,22 @@ document.addEventListener("DOMContentLoaded", () => {
         return Object.keys(votesJoueurs).find(joueur => votesJoueurs[joueur] === vote);
     }
 
-    /**
-     * @brief Affiche les boutons de fin de partie.
-     */
-    function afficherFinDePartie() {
-        btnValiderVote.disabled = true;
-        btnRecommencer.style.display = 'block';
-        btnNouvellePartie.style.display = 'block';
-    }
+
 /**
  * @brief Gère un minuteur pendant lequel les joueurs discutent.
  * @param {number} duree - La durée du minuteur en secondes.
  * @param {Function} callback - Fonction à exécuter une fois le minuteur écoulé.
  */
-function demarrerMinuteur(duree, callback) {
-    const resultatVote = document.getElementById('resultatVote');
-    const btnValiderVote = document.getElementById('validerVote');
-    let tempsRestant = duree;
+    function demarrerMinuteur(duree, callback) {
+        const resultatVote = document.getElementById('resultatVote');
+        const btnValiderVote = document.getElementById('validerVote');
+        let tempsRestant = duree;
 
     // Bloque le bouton de vote
-    btnValiderVote.disabled = true;
+        btnValiderVote.disabled = true;
 
     // Met à jour le texte pour afficher le temps restant
-    const interval = setInterval(() => {
+     const interval = setInterval(() => {
         resultatVote.innerHTML = `Discussion en cours... ${tempsRestant} secondes restantes.`;
         tempsRestant--;
 
@@ -209,24 +234,54 @@ function demarrerMinuteur(duree, callback) {
                 callback();
             }
         }
-    }, 1000); // Exécute toutes les secondes
-}
+            }, 1000); // Exécute toutes les secondes
+                                        }
+ 
+    
+    function afficherTacheSuivante() {
+    
+        backlogIndex++; 
+        if (backlogIndex < backlog.length) {
+            const mission = backlog[backlogIndex];
+    
+            votesJoueurs = {}; 
+            joueurActuelIndex = 0; 
+            tour = 1; 
+    
+            cartes.forEach(carte => carte.classList.remove('selectionnee'));
+            missionActuelle.innerHTML = `
+                <p><strong>Mission :</strong> ${mission.feature}</p>
+            `;
+            resultatVote.innerHTML = `
+                <p>${joueurs[joueurActuelIndex]}, c'est à vous de voter.</p>
+            `;
+            btnValiderVote.disabled = true; 
+        } else {
+            missionActuelle.innerHTML = "<p>Toutes les missions sont terminées.</p>";
+            afficherFinDePartie();
+        }
+    }
+    
+    btnSuivant.addEventListener("click", () => {
+        
+            afficherTacheSuivante(); // Passe à la tâche suivante
+            afficherMissionActuelle(); // Réinitialise sur la tâche actuelle
 
-    /**
-     * @brief Redémarre le tour actuel.
-     */
-    btnRecommencer.addEventListener('click', () => {
-        joueurActuelIndex = 0;
-        votesJoueurs = {};
-        resultatVote.innerHTML = `${joueurs[joueurActuelIndex]}, c'est à vous de voter.`;
-        btnRecommencer.style.display = 'none';
-        btnNouvellePartie.style.display = 'none';
-        btnValiderVote.disabled = false;
     });
+    
 
-    /**
-     * @brief Réinitialise le jeu pour une nouvelle partie.
-     */
+    function afficherFinDePartie() {
+        
+        btnValiderVote.disabled = true;
+        btnSuivant.style.display = "block";
+        btnNouvellePartie.style.display = "block";
+        if (missionActuelle.innerHTML === "<p>Toutes les missions sont terminées.</p>") {
+            btnSuivant.disabled = true; // Active le bouton
+        }
+    }
+    
+
+    // Gestion du bouton "Nouvelle Partie"
     btnNouvellePartie.addEventListener('click', () => {
         sectionMenu.style.display = 'block';
         sectionJeu.style.display = 'none';
@@ -237,4 +292,6 @@ function demarrerMinuteur(duree, callback) {
         zoneNomsJoueurs.style.display = 'none';
         btnDemarrer.style.display = 'none';
     });
+
+   
 });

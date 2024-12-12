@@ -12,11 +12,12 @@
     </header>
 
     <main>
+        <!-- Menu principal -->
         <div id="menu">
-            <label for="nbJoueurs">Nb joueurs :</label>
+            <label for="nbJoueurs">Nombre de joueurs :</label>
             <input type="number" id="nbJoueurs" min="2" placeholder="Ex : 3">
             <button id="validerJoueurs">Valider</button>
-        
+            
             <div id="zoneNomsJoueurs" style="display:none;"></div>
             
             <div id="choixMode" style="margin-top: 10px;">
@@ -26,12 +27,25 @@
                     <option value="moyenne">Moyenne</option>
                 </select>
             </div>
+
+            <!-- Section pour charger le backlog JSON -->
+            <div id="backlogSection" style="margin-top: 10px;">
+                <label for="backlogFile">Charger un fichier JSON :</label>
+                <input type="file" id="backlogFile" accept=".json">
+                <button id="chargerBacklog">Charger Backlog</button>
+            </div>
             
             <button id="demarrerJeu" style="display:none;">Démarrer</button>
         </div>
-        
+
+        <!-- Section de jeu -->
         <div id="jeu" style="display:none;">
             <h2>Votez :</h2>
+            <div id="missionActuelle" style="margin-bottom: 20px;">
+                <!-- La mission actuelle sera affichée ici -->
+            </div>
+
+            <!-- Cartes pour voter -->
             <div id="cartes">
                 <img src="assets/cartes_0.svg" alt="Carte 0" class="carte">
                 <img src="assets/cartes_1.svg" alt="Carte 1" class="carte">
@@ -45,9 +59,15 @@
                 <img src="assets/cartes_100.svg" alt="Carte 100" class="carte">
                 <img src="assets/cartes_cafe.svg" alt="Carte Café" class="carte">
             </div>
+            
+            <!-- Boutons d'action -->
             <button id="validerVote" disabled>Valider</button>
             <div id="resultatVote"></div>
-            <button id="recommencerTour" style="display:none;">Recommencer</button>
+            
+            <!-- Bouton "Recommencer" ou "Continuer" -->
+            <button id="recommencerTour" style="display:none;">Continuer</button>
+            
+            <!-- Bouton "Nouvelle Partie" -->
             <button id="nouvellePartie" style="display:none;">Nouvelle Partie</button>
         </div>
     </main>
