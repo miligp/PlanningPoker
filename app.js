@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnChargerBacklog = document.getElementById('chargerBacklog');
     const backlogFileInput = document.getElementById("backlogFile");
     const missionActuelle = document.getElementById("missionActuelle");
+    const btnTelechargerResultats = document.getElementById('telechargerResultats');
     
 
     // Variables globales
@@ -33,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let backlog = [];
     let backlogIndex = 0;
+    let resultatFinal = [];
 
   // Fonction pour afficher la mission actuelle
   function afficherMissionActuelle() {
@@ -163,6 +165,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 votesJoueurs = {}; // Réinitialise les votes
             });
         } else {
+            const unanimite = minVote;
+
+            resultatFinal.push({
+                tache: backlog[backlogIndex].feature,
+                note: unanimite
+            });
+    
             resultatVote.innerHTML = `<p>Tous les joueurs sont d'accord : ${minVote}.</p>`;
             afficherFinDePartie();
         }
@@ -189,6 +198,11 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if (tour === 2) {
             const votes = Object.values(votesJoueurs);
             const moyenne = (votes.reduce((somme, vote) => somme + vote, 0) / votes.length).toFixed(2);
+
+            resultatFinal.push({
+                tache: backlog[backlogIndex].feature,
+                note: moyenne,
+            });
     
             resultatVote.innerHTML = `<p>La moyenne des votes est : ${moyenne}.</p>`;
             afficherFinDePartie();
@@ -277,9 +291,14 @@ document.addEventListener("DOMContentLoaded", () => {
         btnNouvellePartie.style.display = "block";
         if (missionActuelle.innerHTML === "<p>Toutes les missions sont terminées.</p>") {
             btnSuivant.disabled = true; // Active le bouton
-        }
+            const btnTelecharger = document.getElementById("telechargerResultats");
+            btnTelecharger.style.display = "block";
+            btnTelecharger.addEventListener("click", sauvegarderResultats); // Ajouter l'événement ici
+        }   
+       
     }
     
+    btnTelechargerResultats.addEventListener("click", sauvegarderResultats);
 
     // Gestion du bouton "Nouvelle Partie"
     btnNouvellePartie.addEventListener('click', () => {
@@ -292,6 +311,18 @@ document.addEventListener("DOMContentLoaded", () => {
         zoneNomsJoueurs.style.display = 'none';
         btnDemarrer.style.display = 'none';
     });
+
+    function sauvegarderResultats() {
+        const dataStr = JSON.stringify(resultatFinal, null, 2); // Convertit le tableau en JSON formaté
+        const blob = new Blob([dataStr], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+    
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "resultat_final.json"; // Nom du fichier téléchargé
+        a.click();
+        URL.revokeObjectURL(url); // Nettoie l'URL temporaire
+    }
 
    
 });
