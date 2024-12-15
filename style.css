@@ -13,7 +13,7 @@ body {
 
 /* Header */
 header {
-    background-color: #4CAF50;
+    background-color: #7b44da;
     color: white;
     padding: 15px 0;
     text-align: center;
@@ -42,7 +42,7 @@ header {
 
 #demarrerJeu {
     padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: #7b44da;
     color: white;
     border: none;
     font-size: 16px;
@@ -53,7 +53,7 @@ header {
 }
 
 #demarrerJeu:hover {
-    background-color: #45a049;
+    background-color: #7b44da;
 }
 
 /* Section de jeu */
@@ -90,7 +90,7 @@ header {
 }
 
 .carte.selectionnee {
-    border: 3px solid #4CAF50;
+    border: 3px solid #7b44da;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -134,3 +134,4 @@ button:disabled {
 #nouvellePartie:hover {
     background-color: #e04d2a;
 }
+
