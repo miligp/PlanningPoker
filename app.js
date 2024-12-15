@@ -1,4 +1,5 @@
 /**
+ * Poker Planning 
  * @file app.js
  * @brief  Cette Application est un planning poker. 
  * @details Ce script configure et gère les différentes étapes du jeu. 
@@ -119,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
         reader.readAsText(fichier);
     });
     
-    
+
 /**
  * @brief Affiche la mission actuelle à partir du backlog.
  * @details
@@ -626,6 +627,4 @@ document.addEventListener("DOMContentLoaded", () => {
         a.click();
         URL.revokeObjectURL(a.href); // Libère l'URL temporaire
     }
-    
-    
 });
