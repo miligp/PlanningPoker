@@ -1,9 +1,7 @@
 /**
  * @file app.js
- * @brief  Cette Application est un planning poker. 
- * @details Ce script configure et gère les différentes étapes du jeu. 
- *          Les joueurs votent et les résultats sont calculés selon le mode choisi (unanimité ou moyenne)
- *          Cela nous permettra de sauvegarder les votes et les taches dans un json. 
+ * @brief Fichier principal pour l'application Planning Poker.
+ * @details Ce fichier contient toutes les fonctions principales pour gérer les votes, les joueurs et les tâches.
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -119,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
         reader.readAsText(fichier);
     });
     
-    
+
 /**
  * @brief Affiche la mission actuelle à partir du backlog.
  * @details
@@ -328,35 +326,44 @@ document.addEventListener("DOMContentLoaded", () => {
  *   - Affiche un message indiquant l'unanimité.
  *   - Passe à la gestion de fin de partie via `afficherFinDePartie()`.
  */
-    function gererUnanimite() {
-        const votes = Object.values(votesJoueurs);
-        const minVote = Math.min(...votes);
-        const maxVote = Math.max(...votes);
+function gererUnanimite() {
+    const votes = Object.values(votesJoueurs);
+    const minVote = Math.min(...votes);
+    const maxVote = Math.max(...votes);
 
-        if (minVote !== maxVote) {
-            const joueurMin = obtenirJoueurParVote(votesJoueurs, minVote);
-            const joueurMax = obtenirJoueurParVote(votesJoueurs, maxVote);
-    
-            resultatVote.innerHTML = `<p>${joueurMin} (min) et ${joueurMax} (max), discutez !</p>`;
-            
-            // Démarre un minuteur de 30 secondes
-            demarrerMinuteur(30, () => {
-                joueurActuelIndex = 0; // Réinitialise pour le prochain vote
-                votesJoueurs = {}; // Réinitialise les votes
-            });
-        } else {
-            const unanimite = minVote;
+    // Cas où il n'y a pas unanimité
+    if (minVote !== maxVote) {
+        // Trouver les joueurs ayant voté min et max
+        const joueurMin = obtenirJoueurParVote(votesJoueurs, minVote);
+        const joueurMax = obtenirJoueurParVote(votesJoueurs, maxVote);
 
-            resultatFinal.push({
-                tache: backlog[backlogIndex].feature,
-                note: unanimite
-            });
-    
-            resultatVote.innerHTML = `<p>Tous les joueurs sont d'accord : ${minVote}.</p>`;
-            afficherFinDePartie();
+        (joueurMin && joueurMax) {
+            resultatVote.innerHTML = `<p>${joueurMin} (min) et ${joueurMax} (max), discutez et revotez !</p>`;
         }
-    }
 
+        // Démarrer un minuteur de 30 secondes pour redémarrer le vote
+        demarrerMinuteur(30, () => {
+            joueurActuelIndex = 0; // Réinitialise l'index des joueurs
+            votesJoueurs = {}; // Réinitialise les votes
+            resultatVote.innerHTML = `C'est au tour de ${joueurs[joueurActuelIndex]} de voter.`;
+        });
+    }
+    // Cas où il y a unanimité
+    else {
+        const unanimite = minVote;
+        resultatFinal.push({
+            tache: backlog[backlogIndex].feature,
+            note: unanimite
+        });
+
+        resultatVote.innerHTML = `<p>Tous les joueurs sont d'accord : ${unanimite}.</p>`;
+        afficherFinDePartie();
+    }
+}
+
+
+
+    
 
 /**
  * @brief Gère le mode de jeu basé sur la moyenne des votes.
@@ -377,36 +384,33 @@ document.addEventListener("DOMContentLoaded", () => {
  *   - Enregistre cette moyenne avec la tâche actuelle dans `resultatFinal`.
  *   - Affiche la moyenne des votes et appelle `afficherFinDePartie()` pour conclure.
  */
-   function gererMoyenne() {
-        if (tour === 1) {
-            const votes = Object.values(votesJoueurs);
-            const minVote = Math.min(...votes);
-            const maxVote = Math.max(...votes);
-    
-            const joueurMin = obtenirJoueurParVote(votesJoueurs, minVote);
-            const joueurMax = obtenirJoueurParVote(votesJoueurs, maxVote);
-    
-            resultatVote.innerHTML = `<p>${joueurMin} (min) et ${joueurMax} (max), discutez avant le 2e tour.</p>`;
-            
-            // Démarre un minuteur de 30 secondes
-            demarrerMinuteur(30, () => {
-                tour = 2; // Passe au 2e tour
-                joueurActuelIndex = 0;
-                votesJoueurs = {};
-            });
-        } else if (tour === 2) {
-            const votes = Object.values(votesJoueurs);
-            const moyenne = (votes.reduce((somme, vote) => somme + vote, 0) / votes.length).toFixed(2);
+function gererMoyenne() {
+    if (tour === 1) {
+        const votes = Object.values(votesJoueurs);
+        const minVote = Math.min(...votes);
+        const maxVote = Math.max(...votes);
+        const joueurMin = obtenirJoueurParVote(votesJoueurs, minVote);
+        const joueurMax = obtenirJoueurParVote(votesJoueurs, maxVote);
 
-            resultatFinal.push({
-                tache: backlog[backlogIndex].feature,
-                note: moyenne,
-            });
-    
-            resultatVote.innerHTML = `<p>La moyenne des votes est : ${moyenne}.</p>`;
-            afficherFinDePartie();
-        }
+        resultatVote.innerHTML = `<p>${joueurMin} (min) et ${joueurMax} (max), discutez avant le 2e tour.</p>`;
+        tour = 2;
+        joueurActuelIndex = 0;
+        votesJoueurs = {};
+        
+        // Démarre un minuteur de 30 secondes
+        demarrerMinuteur(30, () => {
+            tour = 2; // Passe au 2e tour
+            joueurActuelIndex = 0;
+            votesJoueurs = {};
+        });
+    } else if (tour === 2) {
+        const votes = Object.values(votesJoueurs);
+        const moyenne = (votes.reduce((somme, vote) => somme + vote, 0) / votes.length).toFixed(2);
+
+        resultatVote.innerHTML = `<p>La moyenne des votes est : ${moyenne}.</p>`;
+        afficherFinDePartie();
     }
+}
 
 
 /**
@@ -414,10 +418,14 @@ document.addEventListener("DOMContentLoaded", () => {
 * @param vote Vote du joueur.
 * @return Le pseudo du joueur ayant effectué ce vote.
  */
-    function obtenirJoueurParVote(vote) {
-        return Object.keys(votesJoueurs).find(joueur => votesJoueurs[joueur] === vote);
+function obtenirJoueurParVote(votesJoueurs, voteRecherche) {
+    for (const [joueur, vote] of Object.entries(votesJoueurs)) {
+        if (vote === voteRecherche) {
+            return joueur;
+        }
     }
-
+    return null;
+}
 
 /**
  * @brief Gère un minuteur pendant lequel les joueurs discutent.
@@ -626,6 +634,4 @@ document.addEventListener("DOMContentLoaded", () => {
         a.click();
         URL.revokeObjectURL(a.href); // Libère l'URL temporaire
     }
-    
-    
 });
