@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: app.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: app.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * @file app.js
  * @module app.js
  * @description Fichier principal pour gérer l'application Planning Poker.
@@ -128,14 +156,14 @@ document.addEventListener("DOMContentLoaded", () => {
  * @see afficherFinDePartie()
  */
   function afficherMissionActuelle() {
-    if (backlogIndex < backlog.length) {
+    if (backlogIndex &lt; backlog.length) {
         const mission = backlog[backlogIndex];
         missionActuelle.innerHTML = `
-            <p><strong>Tache :</strong> ${mission.feature}</p>
+            &lt;p>&lt;strong>Tache :&lt;/strong> ${mission.feature}&lt;/p>
         `;
         btnValiderVote.disabled = false;
     } else {
-        missionActuelle.innerHTML = "<p>Toutes les missions sont terminées.</p>";
+        missionActuelle.innerHTML = "&lt;p>Toutes les missions sont terminées.&lt;/p>";
         afficherFinDePartie();
     }
 }
@@ -151,9 +179,9 @@ document.addEventListener("DOMContentLoaded", () => {
     btnValiderJoueurs.addEventListener('click', () => {
         const nbJoueurs = parseInt(inputNbJoueurs.value);
 
-        if (!isNaN(nbJoueurs) && nbJoueurs >= 2) {  //Changement v2
+        if (!isNaN(nbJoueurs) &amp;&amp; nbJoueurs >= 2) {  //Changement v2
             zoneNomsJoueurs.innerHTML = '';
-            for (let i = 0; i < nbJoueurs; i++) {
+            for (let i = 0; i &lt; nbJoueurs; i++) {
                 const input = document.createElement('input');
                 input.type = 'text';
                 input.placeholder = `Pseudo joueur ${i + 1}`;
@@ -187,7 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         modeJeu = document.getElementById('modeJeu').value;
 
-        if (joueurs.length >= 2 && backlog.length > 0) { //Cnagement
+        if (joueurs.length >= 2 &amp;&amp; backlog.length > 0) { //Cnagement
             joueurActuelIndex = 0;
             votesJoueurs = {};
             tour = 1;
@@ -260,7 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (carte.alt === "Carte Café") {
                 votesJoueurs[joueurs[joueurActuelIndex]] = "café";
-                if (Object.values(votesJoueurs).every(v => v === "café") && Object.keys(votesJoueurs).length === joueurs.length) {
+                if (Object.values(votesJoueurs).every(v => v === "café") &amp;&amp; Object.keys(votesJoueurs).length === joueurs.length) {
                     // Enregistrer la tâche et les votes actuels
                     resultatFinal.push({
                         tache: backlog[backlogIndex]?.feature || "Tâche inconnue",
@@ -338,7 +366,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const joueurMin = obtenirJoueurParVote(votesJoueurs, minVote);
             const joueurMax = obtenirJoueurParVote(votesJoueurs, maxVote);
     
-            resultatVote.innerHTML = `<p>${joueurMin} (min) et ${joueurMax} (max), discutez !</p>`;
+            resultatVote.innerHTML = `&lt;p>${joueurMin} (min) et ${joueurMax} (max), discutez !&lt;/p>`;
             
             // Démarre un minuteur de 30 secondes
             demarrerMinuteur(30, () => {
@@ -353,7 +381,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 note: unanimite
             });
     
-            resultatVote.innerHTML = `<p>Tous les joueurs sont d'accord : ${minVote}.</p>`;
+            resultatVote.innerHTML = `&lt;p>Tous les joueurs sont d'accord : ${minVote}.&lt;/p>`;
             afficherFinDePartie();
         }
     }
@@ -395,7 +423,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const joueurMin = obtenirJoueurParVote(votesJoueurs, minVote);
             const joueurMax = obtenirJoueurParVote(votesJoueurs, maxVote);
     
-            resultatVote.innerHTML = `<p>${joueurMin} (min) et ${joueurMax} (max), discutez avant le 2e tour.</p>`;
+            resultatVote.innerHTML = `&lt;p>${joueurMin} (min) et ${joueurMax} (max), discutez avant le 2e tour.&lt;/p>`;
             
             // Démarre un minuteur de 30 secondes
             demarrerMinuteur(30, () => {
@@ -412,7 +440,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 note: moyenne,
             });
     
-            resultatVote.innerHTML = `<p>La moyenne des votes est : ${moyenne}.</p>`;
+            resultatVote.innerHTML = `&lt;p>La moyenne des votes est : ${moyenne}.&lt;/p>`;
             afficherFinDePartie();
         }
     }
@@ -454,7 +482,7 @@ document.addEventListener("DOMContentLoaded", () => {
         resultatVote.innerHTML = `Discussion en cours... ${tempsRestant} secondes restantes.`;
         tempsRestant--;
 
-        if (tempsRestant < 0) {
+        if (tempsRestant &lt; 0) {
             clearInterval(interval);
             resultatVote.innerHTML = `Temps écoulé ! Vous pouvez voter.`;
             
@@ -481,7 +509,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function afficherTacheSuivante() {
     
         backlogIndex++; 
-        if (backlogIndex < backlog.length) {
+        if (backlogIndex &lt; backlog.length) {
             const mission = backlog[backlogIndex];
     
             votesJoueurs = {}; 
@@ -490,14 +518,14 @@ document.addEventListener("DOMContentLoaded", () => {
     
             cartes.forEach(carte => carte.classList.remove('selectionnee'));
             missionActuelle.innerHTML = `
-                <p><strong>Mission :</strong> ${mission.feature}</p>
+                &lt;p>&lt;strong>Mission :&lt;/strong> ${mission.feature}&lt;/p>
             `;
             resultatVote.innerHTML = `
-                <p>${joueurs[joueurActuelIndex]}, c'est à vous de voter.</p>
+                &lt;p>${joueurs[joueurActuelIndex]}, c'est à vous de voter.&lt;/p>
             `;
             btnValiderVote.disabled = true; 
         } else {
-            missionActuelle.innerHTML = "<p>Toutes les missions sont terminées.</p>";
+            missionActuelle.innerHTML = "&lt;p>Toutes les missions sont terminées.&lt;/p>";
             afficherFinDePartie();
         }
     }
@@ -535,7 +563,7 @@ document.addEventListener("DOMContentLoaded", () => {
         btnValiderVote.disabled = true;
         btnSuivant.style.display = "block";
         btnNouvellePartie.style.display = "block";
-        if (missionActuelle.innerHTML === "<p>Toutes les missions sont terminées.</p>") {
+        if (missionActuelle.innerHTML === "&lt;p>Toutes les missions sont terminées.&lt;/p>") {
             btnSuivant.disabled = true; // Active le bouton
             const btnTelecharger = document.getElementById("telechargerResultats");
             btnTelecharger.style.display = "block";
@@ -669,4 +697,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     
-});
+});</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="app.module_js.html">app.js</a></li></ul><h3>Events</h3><ul><li><a href="app.module_js.html#~event:btnChargerBacklog">btnChargerBacklog</a></li><li><a href="app.module_js.html#~event:btnDemarrer">btnDemarrer</a></li><li><a href="app.module_js.html#~event:btnNouvellePartie">btnNouvellePartie</a></li><li><a href="app.module_js.html#~event:btnReprendrePartie">btnReprendrePartie</a></li><li><a href="app.module_js.html#~event:btnSuivant">btnSuivant</a></li><li><a href="app.module_js.html#~event:btnTelechargerResultats">btnTelechargerResultats</a></li><li><a href="app.module_js.html#~event:btnValiderJoueurs">btnValiderJoueurs</a></li><li><a href="app.module_js.html#~event:btnValiderVote">btnValiderVote</a></li><li><a href="app.module_js.html#~event:carte">carte</a></li><li><a href="app.module_js.html#~event:fichierProgressionInput">fichierProgressionInput</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Fri Dec 20 2024 12:47:54 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

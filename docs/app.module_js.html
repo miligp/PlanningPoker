@@ -1,0 +1,3040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Module: app.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Module: app.js</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description">Fichier principal pour gérer l'application Planning Poker.</div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Ilyna Machane - Milena Gordien Piquet</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="app.js.html">app.js</a>, <a href="app.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~afficherFinDePartie"><span class="type-signature">(inner) </span>afficherFinDePartie<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Gère la fin de la partie en désactivant les options de vote et en affichant les options de clôture.Appelée lorsque toutes les missions ont été terminées ou lorsqu'une condition de fin de partie est atteinte.Les actions effectuées sont les suivantes : Désactive le bouton "Valider Vote" pour empêcher tout nouveau vote.Affiche les boutons "Suivant" et "Nouvelle Partie" pour permettre à l'utilisateur de naviguer ou de recommencer.Si toutes les missions sont terminées : Désactive le bouton "Suivant". Affiche le bouton "Télécharger Résultats" pour permettre de sauvegarder les résultats finaux dans un fichier JSON.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="app.js.html">app.js</a>, <a href="app.js.html#line522">line 522</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>sauvegarderResultats</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        Aucun, cette fonction est censée être utilisée uniquement en fin de partie.
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~afficherMissionActuelle"><span class="type-signature">(inner) </span>afficherMissionActuelle<span class="signature">(backlog, backlogIndex)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>backlog</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Backlog</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Liste des missions restantes à accomplir.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>backlogIndex</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Indice de la mission actuellement sélectionnée dans le backlog.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="app.js.html">app.js</a>, <a href="app.js.html#line123">line 123</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>afficherFinDePartie()</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        Si le backlog est vide ou mal défini.
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~afficherTacheSuivante"><span class="type-signature">(inner) </span>afficherTacheSuivante<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Gèrer la progression à travers les tâches du backlog. Incrémente l'indice du backlog (`backlogIndex`). Réinitialise les données nécessaires pour la nouvelle tâche :Efface les votes des joueurs. Réinitialise l'indice du joueur actuel et le compteur de tours. Met à jour l'interface a jour pour une nouvelle tache.Si toutes les tâches ont été complétées, la fonction : Affiche un message indiquant la fin des missions. Appelle `afficherFinDePartie()`.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="app.js.html">app.js</a>, <a href="app.js.html#line474">line 474</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>afficherFinDePartie()</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~demanderPause"><span class="type-signature">(inner) </span>demanderPause<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Cette fonction met la partie en pause si tous les joueurs ont sélectionné la carte "café". Elle demande une confirmation à l'utilisateur avant de sauvegarder la progression actuelle. Les étapes effectuées par cette fonction sont les suivantes : Affiche une boîte de dialogue de confirmation pour vérifier si l'utilisateur souhaite mettre la partie en pause. Si confirmé : Appelle la fonction `sauvegarderProgression` pour enregistrer l'état actuel du jeu. Avertit les utilisateurs qu'un fichier JSON contenant la progression a été téléchargé.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="app.js.html">app.js</a>, <a href="app.js.html#line615">line 615</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>sauvegarderProgression()</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~demarrerMinuteur"><span class="type-signature">(inner) </span>demarrerMinuteur<span class="signature">(duree, callback)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Gère un minuteur pendant lequel les joueurs discutent.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>duree</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">La durée du minuteur en secondes.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Fonction à exécuter une fois le minuteur écoulé.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="app.js.html">app.js</a>, <a href="app.js.html#line438">line 438</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~gererMoyenne"><span class="type-signature">(inner) </span>gererMoyenne<span class="signature">(votesJoueurs, backlog, backlogIndex, demarrerMinuteur, afficherFinDePartie)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Cette fonction suit une logique en deux étapes pour calculer une note moyenne :   **Premier tour :** Analyse les votes des joueurs pour identifier les valeurs minimale et maximale.  Identifie les joueurs ayant donné les votes extrêmes.  Affiche un message incitant les joueurs à discuter.  Démarre un minuteur de 30 secondes permettant une réflexion avant de passer au second tour.  Après le minuteur :  Réinitialise les votes.  Permet à tous les joueurs de revoter. //**Deuxième tour :**  Calcule la moyenne des votes donnés par les joueurs.  Enregistre la note moyenne associée à la tâche actuelle dans `resultatFinal`.  Affiche un message avec la moyenne obtenue.  Appelle `afficherFinDePartie()` pour conclure la tâche en cours.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>votesJoueurs</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Votes des joueurs, avec le pseudo comme clé et le vote comme valeur.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>backlog</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Liste des tâches en cours de traitement.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>backlogIndex</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Indice de la tâche actuelle dans le backlog.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>demarrerMinuteur</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Fonction qui démarre un minuteur pour la discussion.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>afficherFinDePartie</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Fonction pour conclure la tâche ou la partie.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="app.js.html">app.js</a>, <a href="app.js.html#line362">line 362</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>obtenirJoueurParVote()</li>
+        
+            <li>demarrerMinuteur()</li>
+        
+            <li>afficherFinDePartie()</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        Si les votes ou le backlog sont mal définis.
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~gererUnanimite"><span class="type-signature">(inner) </span>gererUnanimite<span class="signature">(votesJoueurs, backlog, backlogIndex, demarrerMinuteur, obtenirJoueurParVote)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Cette fonction vérifie si tous les votes des joueurs sont identiques pour établir l'unanimité :Si les votes diffèrent (absence d'unanimité) : Identifie les joueurs ayant voté pour les valeurs minimale et maximale. Affiche un message incitant les joueurs à discuter. Lance un minuteur de discussion (30 secondes) pour permettre une nouvelle phase de vote. Si les votes sont identiques (unanimité) :  Enregistre la tâche actuelle avec la note unanime dans les résultats finaux.  Affiche un message indiquant que l'unanimité est atteinte.  Appelle `afficherFinDePartie()` pour conclure la tâche en cours.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>votesJoueurs</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Objet contenant les votes des joueurs avec les pseudos comme clés et les votes comme valeurs.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>backlog</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Liste des tâches à réaliser.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>backlogIndex</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Indice de la tâche actuelle dans le backlog.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>demarrerMinuteur</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Fonction qui démarre un minuteur de discussion.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>obtenirJoueurParVote</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Fonction pour obtenir le pseudo d'un joueur à partir de son vote.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="app.js.html">app.js</a>, <a href="app.js.html#line310">line 310</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>obtenirJoueurParVote()</li>
+        
+            <li>demarrerMinuteur()</li>
+        
+            <li>afficherFinDePartie()</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        Si les votes ou le backlog sont mal définis.
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~obtenirJoueurParVote"><span class="type-signature">(inner) </span>obtenirJoueurParVote<span class="signature">(votesJoueurs, voteRecherche)</span><span class="type-signature"> &rarr; {string|null}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Cette fonction parcourt les votes des joueurs et retourne le pseudo du joueur dont le vote correspond à la valeur recherchée.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>votesJoueurs</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Votes des joueurs, avec le pseudo comme clé et le vote comme valeur.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>voteRecherche</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+|
+
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Le vote recherché.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="app.js.html">app.js</a>, <a href="app.js.html#line421">line 421</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Le pseudo du joueur ayant effectué ce vote, ou `null` si aucun joueur ne correspond.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+|
+
+<span class="param-type">null</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~sauvegarderProgression"><span class="type-signature">(inner) </span>sauvegarderProgression<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Cette fonction sauvegarde la progression actuelle du jeu dans un fichier JSON.Le fichier est automatiquement téléchargé par le navigateur. Elle crée un objet contenant les données de la progression actuelle. Convertit cet objet en une chaîne JSON formatée. Crée un fichier temporaire (Blob) contenant cette chaîne JSON. Génère un lien temporaire pour permettre le téléchargement du fichier. Déclenche automatiquement le téléchargement du fichier nommé `progression.json`.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="app.js.html">app.js</a>, <a href="app.js.html#line639">line 639</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~sauvegarderResultats"><span class="type-signature">(inner) </span>sauvegarderResultats<span class="signature">(resultatFinal)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Cette fonction sauvegarde les résultats finaux du jeu dans un fichier JSONet déclenche automatiquement le téléchargement de ce fichier. Les étapes effectuées par cette fonction sont les suivantes : Convertit l'objet `resultatFinal` (données des résultats) en une chaîne JSON bien formatée. Crée un fichier temporaire (Blob) contenant cette chaîne JSON. Génère une URL temporaire pointant vers ce fichier Blob. Simule un clic sur un lien de téléchargement, ce qui permet de télécharger le fichier. Libère les ressources associées à l'URL temporaire une fois le fichier téléchargé.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>resultatFinal</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Liste des résultats finaux des votes.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="app.js.html">app.js</a>, <a href="app.js.html#line587">line 587</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        
+                
+<h4 class="name" id="~EtatBoutons">EtatBoutons</h4>
+
+
+
+
+<div class="description">
+    Cette fonction met à jour l'état des boutons selon leur rôle. Elle active les boutons "Valider Joueurs" et "Charger Backlog", tout en désactivant "Reprendre une Partie" et "Activer Boutons".
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">EtatBoutons</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>validerJoueurs</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Indique si le bouton "Valider Joueurs" est activé ou désactivé.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>chargerBacklog</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Indique si le bouton "Charger Backlog" est activé ou désactivé.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>reprendrePartie</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Indique si le bouton "Reprendre une Partie" est activé ou désactivé.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>activerBoutons</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Indique si le bouton "Activer Boutons" est activé ou désactivé.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="app.js.html">app.js</a>, <a href="app.js.html#line52">line 52</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+            
+    
+
+    
+        <h3 class="subsection-title">Events</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~event:btnChargerBacklog">btnChargerBacklog</h4>
+    
+
+    
+
+
+
+<div class="description">
+    Gère le chargement d'un fichier JSON pour le backlog. Cette fonction est exécutée lorsqu'un utilisateur clique sur le bouton "Charger Backlog".Elle effectue les actions suivantes : Vérifie si un fichier a été sélectionné. Lit le fichier JSON en utilisant un `FileReader`. Valide que le contenu du fichier est un tableau non vide. Met à jour la variable globale `backlog` avec les données du fichier. Affiche des messages d'erreur ou de succès selon le cas. * @throws {Error} Si le fichier JSON est vide ou mal formaté.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="app.js.html">app.js</a>, <a href="app.js.html#line206">line 206</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~event:btnDemarrer">btnDemarrer</h4>
+    
+
+    
+
+
+
+<div class="description">
+    Initialisation d'une nouvelle partie. Evenement est exécutée lorsqu'un utilisateur clique sur le bouton "Démarrer".Les actions effectuées sont les suivantes :Récupère les pseudos des joueurs depuis les champs d'entrée.Lit le mode de jeu sélectionné dans la liste déroulante.Valide que :  Au moins deux joueurs ont été renseignés.  Un backlog de tâches a été chargé.Si les conditions ne sont pas remplies, affiche un message d'erreur.Sinon, démarre la partie et configure l'interface utilisateur.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="app.js.html">app.js</a>, <a href="app.js.html#line170">line 170</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>afficherMissionActuelle()</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        Si les pseudos sont insuffisants ou si aucun backlog n'a été chargé.
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~event:btnNouvellePartie">btnNouvellePartie</h4>
+    
+
+    
+
+
+
+<div class="description">
+    Gestionnaire d'événement pour le bouton "Nouvelle Partie". Réinitialise le jeu et permet de démarrer une nouvelle partie.Les actions effectuées incluent : Réinitialisation des données du jeu, y compris les votes, les joueurs et les indices. Réinitialisation des éléments visuels (zone des pseudos, affichage des boutons). Affichage du menu principal pour configurer une nouvelle partie. Désactive les boutons inutiles et réactive ceux nécessaires à la configuration.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="app.js.html">app.js</a>, <a href="app.js.html#line559">line 559</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~event:btnReprendrePartie">btnReprendrePartie</h4>
+    
+
+    
+
+
+
+<div class="description">
+    Ouvre un sélecteur de fichier JSON pour reprendre une partie sauvegardée. Cette fonction est déclenchée lorsqu'un utilisateur clique sur le bouton "Reprendre une Partie". Elle permet de sélectionner un fichier JSON contenant une sauvegarde de la progression.
+</div>
+
+
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Progression</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="app.js.html">app.js</a>, <a href="app.js.html#line70">line 70</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~event:btnSuivant">btnSuivant</h4>
+    
+
+    
+
+
+
+<div class="description">
+    Gestionnaire d'événement pour le bouton "Suivant".Appelle `afficherTacheSuivante()` pour passer à la tâche suivante.Recharge les informations de la tâche actuelle via `afficherMissionActuelle()`.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="app.js.html">app.js</a>, <a href="app.js.html#line506">line 506</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>afficherTacheSuivante</li>
+        
+            <li>afficherMissionActuelle</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~event:btnTelechargerResultats">btnTelechargerResultats</h4>
+    
+
+    
+
+
+
+<div class="description">
+    Gestionnaire d'événement pour le bouton "Télécharger Résultats". Permet de sauvegarder les résultats finaux de la partie dans un fichier JSON.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="app.js.html">app.js</a>, <a href="app.js.html#line548">line 548</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>sauvegarderResultats</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~event:btnValiderJoueurs">btnValiderJoueurs</h4>
+    
+
+    
+
+
+
+<div class="description">
+    L'événement déclenché par le clic sur le bouton. Configure l'interface pour saisir les pseudos des joueurs. Cette fonction est déclenchée lorsqu'on clique sur le bouton "Valider Joueurs". Les actions effectuées sont : Récupérer le nombre de joueurs saisi.Valider que cette valeur est un nombre entier supérieur ou égal à 2.Si la validation réussit : Réinitialise la zone contenant les champs de pseudos. Crée dynamiquement un champ d'entrée pour chaque joueur. Affiche la zone de saisie des pseudos et active le bouton "Démarrer".
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="app.js.html">app.js</a>, <a href="app.js.html#line144">line 144</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        Si le nombre de joueurs saisi est invalide.
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~event:btnValiderVote">btnValiderVote</h4>
+    
+
+    
+
+
+
+<div class="description">
+    Lorsque l'on clique sur le bouton valider le vote :Vérifie si le joueur actuel a soumis un vote valide. Si aucun vote n'est trouvé, affiche un message d'erreur. Si le vote est valide :  Passe au joueur suivant en incrémentant `joueurActuelIndex`.  Si tous les joueurs ont voté :  Traite les votes en fonction du mode de jeu :  **Mode "strict"** : Appelle `gererUnanimite()` pour vérifier l'unanimité.  **Mode "moyenne"** : Appelle `gererMoyenne()` pour calculer la moyenne.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="app.js.html">app.js</a>, <a href="app.js.html#line278">line 278</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>gererUnanimite()</li>
+        
+            <li>gererMoyenne()</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~event:carte">carte</h4>
+    
+
+    
+
+
+
+<div class="description">
+    Ce gestionnaire d'événement est attaché à chaque carte et permet de :Appliquer un style visuel à la carte sélectionnée. Enregistrer le vote du joueur correspondant à la carte sélectionnée : Si la carte sélectionnée est la **Carte Café** : Enregistre "café" comme vote pour le joueur actuel. Vérifie si tous les joueurs ont voté pour la pause café : Si oui, enregistre la tâche actuelle avec la note "café". Met la partie en pause en appelant `demanderPause()`. Si une autre carte est sélectionnée (numérotée), extrait et enregistre sa valeur.Active le bouton "Valider Vote" une fois qu'une carte est sélectionnée.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="app.js.html">app.js</a>, <a href="app.js.html#line242">line 242</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>demanderPause()</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~event:fichierProgressionInput">fichierProgressionInput</h4>
+    
+
+    
+
+
+
+<div class="description">
+    Charge la progression sauvegardée depuis un fichier JSON. Cette fonction est exécutée lorsqu'un fichier JSON est sélectionné via l'élément `fichierProgressionInput`.Elle effectue les actions suivantes : Lit le fichier JSON sélectionné. Valide et parse le contenu du fichier. Recharge les données sauvegardées dans les variables globales.Met à jour l'interface utilisateur pour reprendre la partie là où elle a été arrêtée.
+</div>
+
+
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Progression</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>Événement</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Event</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">déclenché lors de la sélection d'un fichier.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="app.js.html">app.js</a>, <a href="app.js.html#line82">line 82</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>afficherMissionActuelle()</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        Si le fichier JSON est invalide ou ne respecte pas le format attendu.
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+
+
+
+
+
+        
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="app.module_js.html">app.js</a></li></ul><h3>Events</h3><ul><li><a href="app.module_js.html#~event:btnChargerBacklog">btnChargerBacklog</a></li><li><a href="app.module_js.html#~event:btnDemarrer">btnDemarrer</a></li><li><a href="app.module_js.html#~event:btnNouvellePartie">btnNouvellePartie</a></li><li><a href="app.module_js.html#~event:btnReprendrePartie">btnReprendrePartie</a></li><li><a href="app.module_js.html#~event:btnSuivant">btnSuivant</a></li><li><a href="app.module_js.html#~event:btnTelechargerResultats">btnTelechargerResultats</a></li><li><a href="app.module_js.html#~event:btnValiderJoueurs">btnValiderJoueurs</a></li><li><a href="app.module_js.html#~event:btnValiderVote">btnValiderVote</a></li><li><a href="app.module_js.html#~event:carte">carte</a></li><li><a href="app.module_js.html#~event:fichierProgressionInput">fichierProgressionInput</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Fri Dec 20 2024 12:47:54 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
