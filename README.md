@@ -1,5 +1,6 @@
-Planning Poker ♠️♦️🃏
-Comment utiliser l'application :
+###Planning Poker ♠️♦️🃏
+
+##Comment utiliser l'application :
 
 Ouvrez le fichier index.html
 
@@ -11,7 +12,7 @@ Pendant une pause (carte café), un fichier progression.json est téléchargé. 
 
 Cliquez sur "Reprendre une Partie" et chargez le fichier progression.json pour reprendre la partie exactement là où elle a été arrêtée.
 
-Si nouvelle partie :
+##Si nouvelle partie :
 
 Saisissez le nombre de joueurs et le nom de chacun
 
@@ -35,7 +36,7 @@ Pour chaque tâche, les joueurs votent en choisissant une carte parmi les suivan
 
 Les joueurs votent chacun leur tour.
 
-Fin de partie :
+##Fin de partie :
 
 Une fois toutes les tâches estimées, un message s'affiche pour indiquer la fin de la session.
 
